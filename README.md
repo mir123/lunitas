@@ -3,7 +3,7 @@ Make a lunar phase calendar with Javascript
 
 ## 0.Intro
 
-Generate a daily lunar phase calendar in your browser. 
+Generate a daily lunar phase calendar in your browser using SVG.
 
 ![Lunar calendar printout example](https://github.com/mir123/luna.js/blob/master/calendar_example.png "Lunar calendar printout example")
 
@@ -15,7 +15,7 @@ You need to modify some variables in luna.js for the start and end dates, page t
 
 There is no fancy formatting (yet), each day of the calendar is output as an SVG drawing. But you can adjust the page if you want a specific width (say, one week).
 
-Making a PDF like the example here requires some manual work. I printed to PDF from Firefox, imported into Inkscape and prepared it by hand, then saved each PDF page separately and joined them with Ghostscript.
+Making [a PDF like the example here](https://github.com/mir123/luna.js/blob/master/2017_lunar.pdf) requires some manual work. I printed to PDF from Firefox, imported into Inkscape and prepared it by hand, then saved each PDF page separately and joined them with Ghostscript.
 
 
 ## 2. To do
