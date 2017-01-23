@@ -1,6 +1,6 @@
 // luna.js - v. 0.2
 //
-// by mir - mir123 (at) gmail
+// by Fundacion Almanaque Azul - mir123 (at) gmail
 // 
 // Outputs a calendar with phases of the moon
 //
