@@ -15,6 +15,8 @@ You need to modify some variables in luna.js for the start and end dates, page t
 
 There is no fancy formatting (yet), each day of the calendar is output as an SVG drawing. But you can adjust the page if you want a specific width (say, one week).
 
+Making a PDF like the example here requires some manual work. I printed to PDF from Firefox, imported into Inkscape and prepared it by hand, then saved each PDF page separately and joined them with Ghostscript.
+
 
 ## 2. To do
 
