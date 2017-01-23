@@ -64,6 +64,8 @@ end = new Date(Date.UTC(2018,0,1));
 
 page_title = 'Luna 2017'
 page_logo = 'logo_aa_optimised_svg.svg'
+sunday_marker = ''
+// sunday_marker = '*'
 page_footer = 'Fase de la luna a las 8 pm hora local de Panam&aacute; - Fundaci&oacute;n Almanaque Azul - Creative Commons CC-BY-NC-SA 4.0'
 
 PI =  3.14159265358979323846
@@ -161,7 +163,7 @@ while(currentTime <= end){
 	var year = currentTime.getFullYear()
     var wkday = currentTime.getDay()
 	var fulldatemoon = day_container + svg_container + bg_rect + dark_luna + phase_path + element_text_svg 
-	if (wkday == 0){fulldatemoon = fulldatemoon + "*"}
+	if (wkday == 0){fulldatemoon = fulldatemoon + sunday_marker}
 	fulldatemoon = fulldatemoon + day + "/" + month + close_text_svg + close_svg + close_element;	
 
 	document.write(fulldatemoon);
