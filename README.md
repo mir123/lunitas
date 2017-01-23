@@ -5,6 +5,8 @@ Make a lunar phase calendar with Javascript
 
 Generate a daily lunar phase calendar in your browser. 
 
+![Lunar calendar printout example](https://github.com/mir123/luna.js/blob/master/calendar_example.png "Lunar calendar printout example")
+
 ## 1. Usage
 
 Download all files and put in folder. Open luna.html in your browser.
