@@ -56,8 +56,6 @@
 
 // TO DO: Pretty interface to do this from front end
 
-timeAtPhase = 20; // Time of day phase is returned, otherwise it's midnight
-timeZone = -5; // Time zone relative to UTC (-5 = Panama)
 
 start = new Date(Date.UTC(2017,0,2)); // The start date of your calendar in UTC, months 0-11. Uses Jan 2 since the night of Jan 1 in UTC-5 is already Jan 2 in UTC.
 end = new Date(Date.UTC(2018,0,1));
@@ -141,7 +139,13 @@ footer = '</div>\n\
 
 document.write(header + body_start);
 
-timeCorr = (timeAtPhase-timeZone) * 3600; // hrs x seconds
+// This is not working. So for the moment it's 0000hrs UTC, which works well for Panama
+
+//timeAtPhase = 20; // Time of day phase is returned, otherwise it's midnight
+//timeZone = -5; // Time zone relative to UTC (-5 = Panama)
+// timeCorr = (timeAtPhase-timeZone) * 3600; // hrs x seconds
+
+timeCorr = 0
 
 currentTime = start;
 
@@ -149,9 +153,9 @@ while(currentTime <= end){
 
 	tmpt = currentTime / 1000;
 
-	tmpt = tmpt + timeCorr;
+	tmpt2 = tmpt + timeCorr;
 
-	days = (tmpt - EPOCH_MINUS_1970 * 86400) / 86400.0;
+	days = (tmpt2 - EPOCH_MINUS_1970 * 86400) / 86400.0;
 
 	today = potm(days);
 
