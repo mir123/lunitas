@@ -1,0 +1,1347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Lunitas.app</title>
+    <style>
+          /* Style sheet for pom.js */
+
+          @font-face {
+            font-family: "Dongle";
+            src: url("css/Dongle-Regular.ttf") format("truetype");
+            font-weight: regular;
+          }
+
+          @font-face {
+            font-family: "Dongle";
+            src: url("css/Dongle-Bold.ttf") format("truetype");
+            font-weight: bold;
+          }
+
+          @font-face {
+            font-family: "Dongle";
+            src: url("css/Dongle-Light.ttf") format("truetype");
+            font-weight: light;
+          }
+
+          body {
+            color: white;
+            background-color: black;
+            font-family: "Dongle";
+          }
+
+          .form-label {
+            font-size: 2em;
+            margin-top: 1em;
+            font-weight: bold;
+            line-height: 0.5em;
+          }
+
+          .form-check-label {
+            font-size: 1.5em;
+          }
+          :root {
+            --bs-secondary: #626262;
+          }
+          .bg-secondary {
+            --bs-bg-opacity: 1;
+            background-color: #6c757d;!important;
+          }
+          .badge {
+            color: #fafafa;
+
+            display: inline-block;
+            padding: 0.35em 0.65em;
+            font-size: 0.75em;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.25rem;
+          }
+
+          #calendarSizeDiv {
+            margin-top: 20px;
+            border-top: 1px solid #515151;
+            border-radius: 0.5rem;
+            padding: 5px;
+            display: none;
+          }
+
+          @page {
+            /* size: 100%; */
+            background: #00001f;
+            margin: 10mm;
+          }
+
+          @media print {
+            /* This controls print output. Play around with these values and/or the scale setting of your printer or PDF writer */
+
+            body {
+              /* zoom: 50%;
+        -moz-transform: scale(0.6); */
+              -webkit-print-color-adjust: exact;
+              print-color-adjust: exact;
+              background: #00001f;
+              height: 200mm;
+            }
+
+            .date_svg {
+              font-size: 10pt;
+            }
+
+            .day {
+              page-break-inside: avoid;
+              break-inside: avoid;
+              display: block;
+            }
+          }
+
+          .wholeCalendarContainer {
+            background-color: black;
+            margin: auto;
+            width: max-content;
+            break-inside: auto;
+            position: relative;
+          }
+
+          #calendarDummy {
+            border: 1px solid #858585;
+            background-color: #4e4e4e59;
+            margin-top: 30px;
+            margin-right: 20px;
+            padding: 5px;
+            float: right;
+            transform: scale(1.5);
+          }
+
+          #makeCalendar {
+            margin-top: 20px;
+          }
+
+
+
+          h1 {
+            font-size: 40pt;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            padding-bottom: 0;
+            margin: 0px;
+            background-color: black;
+            break-after: avoid;
+          }
+
+          .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10mm;
+            width: 5cm;
+          }
+
+          .mainContainer {
+            display: flex;
+            background-color: black;
+            /* width: max-content;
+      margin: auto; */
+            /* height: 312mm;
+      width: 640mm;
+      transform-origin: 0 0; */
+            /* transform: scale(0.8); */
+          }
+
+          .topRow {
+            display: flex;
+            /* padding: 0mm 10mm 0mm 10mm; */
+            clear: both;
+            margin: auto;
+          }
+
+          .topCol {
+            /* width: 20mm;
+      height: 24mm; */
+          }
+
+          .topColText {
+            margin: auto;
+            width: max-content;
+            font-size: 14pt;
+          }
+
+          .week {
+            display: flex;
+            /* width: 10cm; */
+            margin: auto;
+            justify-content: space-around;
+            flex-direction: row;
+            break-inside: avoid;
+            break-after: auto;
+            break-before: auto;
+          }
+
+          .day {
+            /* float: left; */
+            /* width: 20mm; */
+            /* height: 24mm; */
+            text-align: center;
+            break-inside: avoid;
+            display: block;
+          }
+
+          .monthside {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+            background-color: black;
+          }
+
+          .monthtop {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+          }
+
+          .calendar {
+            clear: both;
+            /* padding: 0mm 10mm 10mm 10mm; */
+            display: flex;
+            margin: auto;
+            /* width: max-content; */
+            background-color: black;
+          }
+
+          .flexColumn {
+            flex-direction: column;
+          }
+
+          .flexRow {
+            flex-direction: row;
+            background-color: black;
+          }
+
+          .date_svg {
+            text-anchor: middle;
+            fill: #9e9e9e;
+            font-size: 18pt;
+            font-style: normal;
+            font-weight: normal;
+            fill-opacity: 1;
+            stroke: none;
+          }
+
+          .bg_rect_svg {
+            fill: #00002f;
+            /* fill: red; */
+            /* stroke: #00001f; */
+            /* stroke-width: 10; */
+            /* stroke-width: 0; */
+          }
+
+          .moon {
+            width: 100%;
+          }
+
+          svg {
+            display: block;
+          }
+
+          .footer_txt {
+            padding-top: 8mm;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: normal;
+            color: #6e6e6e;
+            clear: both;
+            text-align: center;
+            background-color: black;
+          }
+
+          div[class^="col-"],
+          label,
+          .form-control {
+            width: 100% !important;
+            padding: 0;
+          }
+          .row {
+            display: grid;
+            margin: 0;
+            grid-column-gap: 20px;
+            grid-row-gap: 7px;
+            padding: 5px;
+            grid-auto-flow: column;
+          }
+
+          .row-2 {
+            grid-template-columns: 1fr 1fr;
+          }
+    </style>
+    <style></style>
+    <!-- <link href="css/bootstrap-dark.css" rel="stylesheet" /> -->
+  </head>
+  <body>
+    <title>Lunitas.app</title>
+    <h1>
+      Lunitas
+      <span class="badge bg-secondary">A lunar calendar maker</span>
+    </h1>
+    <div class="container">
+      <form id="makeCalendarForm">
+        <div class="row">
+          <div class="col-4">
+            <label for="dateStart" class="form-label">Start date</label>
+
+            <input
+              id="dateStart"
+              type="date"
+              aria-label="Start date"
+              name="dateStart"
+              class="form-control"
+            />
+            <label for="dateEnd" class="form-label">End date</label>
+
+            <input
+              id="dateEnd"
+              type="date"
+              name="dateEnd"
+              aria-label="End date"
+              class="form-control"
+            />
+            <label for="calTitle" class="form-label">Calendar title</label>
+
+            <input
+              id="calTitle"
+              type="text"
+              name="calTitle"
+              aria-label="Calendar title"
+              class="form-control"
+              value="Luna"
+            />
+
+            <label for="calFooter" class="form-label">Footer text</label>
+
+            <input
+              id="calFooter"
+              type="text"
+              name="calFooter"
+              aria-label="Calendar footer"
+              class="form-control"
+              value="Creative Commons CC-BY-NC-SA 4.0"
+            />
+          </div>
+          <div class="col-4">
+            <label for="dateFormat" class="form-label">Date format</label>
+            <div class="row row-2">
+              <div class="col">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="dateFormat"
+                    id="dateFormat1"
+                    value="none"
+                  />
+                  <label class="form-check-label" for="dateFormat1">
+                    No dates
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="dateFormat"
+                    id="dateFormat6"
+                    value="day"
+                  />
+                  <label class="form-check-label" for="dateFormat6"
+                    >day only
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="dateFormat"
+                    id="dateFormat2"
+                    value="daymonth"
+                    checked
+                  />
+                  <label class="form-check-label" for="dateFormat2"
+                    >day/month
+                  </label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="dateFormat"
+                    id="dateFormat3"
+                    value="monthday"
+                  />
+                  <label class="form-check-label" for="dateFormat3">
+                    month/day
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="dateFormat"
+                    id="dateFormat4"
+                    value="daymonthyear"
+                  />
+                  <label class="form-check-label" for="dateFormat4">
+                    day/month/year
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="dateFormat"
+                    id="dateFormat5"
+                    value="monthdayyear"
+                  />
+                  <label class="form-check-label" for="dateFormat5">
+                    month/day/year
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row row-2">
+              <div class="col">
+                <label for="sundayMarker" class="form-label"
+                  >Marker for Sundays</label
+                >
+
+                <input
+                  id="sundayMarker"
+                  type="text"
+                  name="sundayMarker"
+                  aria-label="Calendar footer"
+                  class="form-control"
+                  value="*"
+                />
+              </div>
+              <div class="col">
+                <label for="saturdayMarker" class="form-label"
+                  >Marker for Saturdays</label
+                >
+
+                <input
+                  id="saturdayMarker"
+                  type="text"
+                  name="saturdayMarker"
+                  aria-label="Calendar footer"
+                  class="form-control"
+                  value=""
+                />
+              </div>
+            </div>
+            <label for="layout" class="form-label">Calendar layout</label>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="layout"
+                id="layout1"
+                value="week"
+                checked
+              />
+              <label class="form-check-label" for="flexRadioDefault1">
+                Weekly
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="layout"
+                id="layout2"
+                value="monthtop"
+              />
+              <label class="form-check-label" for="flexRadioDefault2"
+                >Months on top
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="layout"
+                id="layout3"
+                value="monthside"
+              />
+              <label class="form-check-label" for="flexRadioDefault2">
+                Months on the side
+              </label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="col-auto">
+              <label for="dayWidth" class="form-label">Moon width (mm)</label>
+            </div>
+            <div class="row row-2">
+              <div class="col">
+                <input
+                  type="range"
+                  class="form-range"
+                  min="0"
+                  max="30"
+                  step="0.1"
+                  id="widthRange"
+                  value="20"
+                />
+              </div>
+              <div class="col">
+                <input
+                  id="dayWidth"
+                  type="decimal"
+                  aria-label="Moon width"
+                  name="dayWidth"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div id="calendarSizeDiv">
+              Calendar dimensions (approx.): <br />
+              <!-- <div id="calendarDummy">&nbsp;</div> -->
+
+              <div id="calendarDimensions"></div>
+            </div>
+          </div>
+        </div>
+        <button id="makeCalendar" type="submit" class="btn btn-dark">
+          Make calendar
+        </button>
+      </form>
+      by mir - mir@guineo.org - Arctic Sunrise - Antarctica - 2022
+    </div>
+
+    <script>
+      // Lunitas app - v. 1
+      //
+      // by mir - mir (at) guineo.org
+      //
+      // Outputs a calendar with phases of the moon
+      //
+      // 2022.02.05 Release 1 on Antarctica on board the Arctic Sunrise
+      // 2022.01.20 Changed to createelement instead of lots of strings
+      // 2017.01.21 First release
+      // 2011.03.09 adapted code from pom.c (from BSD games)
+      //
+      // Moon phase calculations based on the BSD Games program pom by Keith E. Brandt
+      // Eclipse calculations from Basic Lunar Eclipse and Phase Calculator
+      // (Xavier Jubier: http://xjubier.free.fr/)
+      //
+
+      PI = 3.14159265358979323846;
+
+      /*
+       * The EPOCH in the third edition of the book is 1990 Jan 0.0 TDT.
+       * In this program, we do not bother to correct for the differences
+       * between UTC (as shown by the UNIX clock) and TDT.  (TDT = TAI + 32.184s;
+       * TAI-UTC = 32s in Jan 1999.)
+       */
+
+      EPOCH_MINUS_1970 =
+        20 * 365 + 5 - 1; /* 20 years, 5 leaps, back 1 day to Jan 0 */
+      EPSILONg = 279.403303; /* solar ecliptic long at EPOCH */
+      RHOg = 282.768422; /* solar ecliptic long of perigee at EPOCH */
+      ECCEN = 0.016713; /* solar orbit eccentricity */
+      lzero = 318.351648; /* lunar mean long at EPOCH */
+      Pzero = 36.34041; /* lunar mean long of perigee at EPOCH */
+      Nzero = 318.510107; /* lunar mean long of node at EPOCH */
+
+      /* Precision used when describing the moon's phase in textual format, in phase_string().
+       */
+
+      PRECISION = 0.01;
+      NEW = 0 / 4.0;
+      FIRST = 1 / 4.0;
+      FULL = 2 / 4.0;
+      LAST = 3 / 4.0;
+      NEXTNEW = 4 / 4.0;
+
+      var svg_container, element_text_svg, day_container;
+
+      var tmpt;
+      var days, today, tomorrow;
+
+      var weekdays = ["S", "M", "T", "W", "T", "F", "S"];
+      var months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+
+      var today = new Date();
+      document.getElementById("dateStart").value = formatDate(today);
+
+      var oneYear = new Date(today.setFullYear(today.getFullYear() + 1));
+      // oneYear.setDate(oneYear.getDate() - 1);
+
+      document.getElementById("dateEnd").value = formatDate(oneYear);
+
+      document
+        .getElementById("widthRange")
+        .addEventListener("change", function (val) {
+          console.log("widthRange changed", val);
+        });
+
+      var slider = document.getElementById("widthRange");
+      var output = document.getElementById("dayWidth");
+      output.value = slider.value;
+
+      slider.oninput = function () {
+        output.value = this.value;
+      };
+
+      makeCalendarForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        // console.log(e);
+        var data = new FormData(makeCalendarForm);
+        console.log(data.get("saturdayMarker"));
+        const values = [...data.entries()];
+        console.log(values);
+
+        pageTitle = data.get("calTitle");
+        sundayMarker = data.get("sundayMarker");
+        saturdayMarker = data.get("saturdayMarker");
+
+        makeCalendar(
+          data.get("dateStart"),
+          data.get("dateEnd"),
+          data.get("calTitle"),
+          data.get("calFooter"),
+          data.get("layout"),
+          data.get("dateFormat"),
+          data.get("dayWidth")
+        );
+
+        // Can't figure out how to wait for the DOM to be finished...
+        setTimeout(() => {
+          getCalendarSize();
+        }, 1);
+      });
+
+      function makeCalendar(
+        startDate,
+        endDate,
+        pageTitle,
+        pageFooter,
+        layout,
+        dateFormat,
+        dayWidth
+      ) {
+        startYear = header =
+          `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:svg="http://www.w3.org/2000/svg" 
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:svg="http://www.w3.org/2000/svg"
+xmlns="http://www.w3.org/2000/svg">
+<head>
+    <title>` +
+          pageTitle +
+          `</title>
+<link rel="stylesheet" type="text/css" href="luna.css"/>\
+<?xml-stylesheet type="text/css" href="luna.css" ?> \
+</head>
+<body>
+
+</body>
+    <html>`;
+
+        // Give a random name to new window so we don't try to write into old ones we don't own
+        // calendarWindow = window.open("", "calendario" + Math.random() * 10000);
+        calendarWindow = window.open("", "");
+        calendarPage = calendarWindow.document;
+
+        calendarPage.write(header);
+        calendarPage.close();
+
+        var wholeCalendarContainer = calendarPage.createElement("div");
+        wholeCalendarContainer.className = "wholeCalendarContainer";
+        calendarPage.body.appendChild(wholeCalendarContainer);
+
+        var h1 = calendarPage.createElement("h1");
+        h1.innerHTML = pageTitle;
+        wholeCalendarContainer.appendChild(h1);
+
+        // Main container (calendar and column/row heads)
+
+        mainDiv = calendarPage.createElement("div");
+        mainDiv.id = "mainContainer";
+        mainDiv.className = "mainContainer";
+
+        // Calendar container
+        calendarDiv = calendarPage.createElement("div");
+        calendarDiv.className = "calendar";
+
+        // These elements get cloned for each day
+
+        // Day container
+        day_container = calendarPage.createElement("div");
+        day_container.className = "day";
+        day_container.setAttribute("style", "width:" + dayWidth + "mm;");
+
+        // This is the container that holds each moon
+        svg_container = calendarPage.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "svg"
+        );
+        svg_container.setAttribute("class", "moon");
+        svg_container.setAttribute("version", "1.1");
+        svg_container.setAttribute("viewBox", "0 0 100 120");
+        svg_container.setAttribute("width", "100%");
+        svg_container.setAttribute("height", "100%");
+
+        // The background rectangle behind each moon
+
+        var bg_rect = calendarPage.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "rect"
+        );
+        bg_rect.setAttribute("class", "bg_rect_svg");
+        bg_rect.setAttribute("x", "0");
+        bg_rect.setAttribute("y", "0");
+        bg_rect.setAttribute("width", "100");
+        bg_rect.setAttribute("height", "120");
+        bg_rect.setAttribute("stroke", "black");
+        bg_rect.setAttribute("stroke-width", "1px");
+
+        svg_container.appendChild(bg_rect);
+
+        scale_factor = 0.75; // Relative size of moon inside svg/div
+        move_x = 20; // shifts moon inside svg/div
+        move_y = 20;
+        transform =
+          "scale(" +
+          scale_factor +
+          "," +
+          scale_factor +
+          ") translate(" +
+          move_x +
+          "," +
+          move_y +
+          ")";
+
+        // The dark round shape of the moon above which the phase is drawn
+
+        var dark_luna = calendarPage.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "circle"
+        );
+        dark_luna.setAttribute("cx", "50");
+        dark_luna.setAttribute("cy", "50");
+        dark_luna.setAttribute("r", "50");
+        dark_luna.setAttribute("stroke", "none");
+        dark_luna.setAttribute("fill", "black");
+        dark_luna.setAttribute("transform", transform);
+
+        svg_container.appendChild(dark_luna);
+
+        // The text element underneath each moon
+
+        element_text_svg = calendarPage.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "text"
+        );
+        element_text_svg.setAttribute("class", "date_svg");
+        element_text_svg.setAttribute("x", 50);
+        element_text_svg.setAttribute("y", 110);
+
+        var footer = calendarPage.createElement("div");
+        footer.className = "footer_txt";
+        footer.innerHTML = pageFooter;
+
+        timeCorr = 0;
+
+        start = getLocalTime(startDate);
+        end = getLocalTime(endDate);
+
+        EclipseYear = getFractionalYear(start);
+        YearPeriod = getFractionalYear(end) - EclipseYear;
+
+        eclipses = calcLunarEclipse(EclipseYear, YearPeriod);
+
+        // Get eclipse dates ready for comparison
+        eclipses.map((eclipse) => eclipse.date.setHours(0, 0, 0, 0));
+        // console.log(eclipses);
+
+        block = calendarPage.createElement("div");
+
+        topRow = block.cloneNode(true);
+        topRow.setAttribute("class", "topRow");
+
+        topCol = calendarPage.createElement("div");
+        topCol.setAttribute("class", "topCol");
+        topCol.setAttribute(
+          "style",
+          "width:" + dayWidth + "mm; height:" + dayWidth * 1.2 + "mm;"
+        );
+
+        topColText = calendarPage.createElement("div");
+        topColText.setAttribute("class", "topColText");
+        topColText.setAttribute("style", "line-height: " + dayWidth + "mm;");
+        topCol.appendChild(topColText);
+
+        if (layout == "week") {
+          weekStart = "Monday";
+          firstBlockday = weekStart == "Monday" ? 1 : 0;
+          firstBlockSize = blockSize = 7;
+          calendarDiv.className += " flexColumn";
+
+          // Make the top row
+          topRow.setAttribute("class", layout);
+          for (var i = firstBlockday; i < 7 + firstBlockday; i++) {
+            day = i == 7 ? 0 : i;
+            oneDayCol = topCol.cloneNode(true);
+            oneDayCol.firstChild.innerHTML = weekdays[day];
+            topRow.appendChild(oneDayCol);
+          }
+          mainDiv.className += " flexColumn";
+
+          mainDiv.appendChild(topRow);
+
+          firstDay = start.getDay();
+          lastDay = end.getDay();
+        } else {
+          firstBlockday = 1;
+          firstMonth = start.getMonth();
+
+          if (layout == "monthside") {
+            topRow.className += " flexColumn";
+            mainDiv.className += " flexRow";
+            calendarDiv.className += " flexColumn";
+          } else {
+            topRow.className += " flexRow";
+            mainDiv.className += " flexColumn";
+            calendarDiv.className += " flexRow";
+          }
+
+          // Make the top row/left column for months based layouts
+
+          numberMonths =
+            1 +
+            end.getMonth() -
+            firstMonth +
+            12 * (end.getFullYear() - start.getFullYear());
+
+          monthAdd = firstMonth;
+
+          for (var i = 0; i < numberMonths; i++) {
+            monthAdd = monthAdd == 12 ? 0 : monthAdd;
+            oneMonthCol = topCol.cloneNode(true);
+            oneMonthCol.firstChild.innerHTML = months[monthAdd];
+            topRow.appendChild(oneMonthCol);
+            monthAdd++;
+          }
+
+          mainDiv.appendChild(topRow);
+
+          firstBlockSize = getMonthSize(start);
+          firstDay = start.getDate();
+          lastDay = end.getDate();
+        }
+
+        // Ok now append the calendar div
+
+        mainDiv.appendChild(calendarDiv);
+
+        // Pad the first days of the first block until we get to our start date
+
+        thisBlock = block.cloneNode(true);
+        thisBlock.setAttribute("class", layout);
+
+        if (firstDay != firstBlockday) {
+          firstDay = firstDay == 0 ? firstBlockSize : firstDay;
+
+          for (var i = firstBlockday; i < firstDay; i++) {
+            day = i == firstBlockSize ? 0 : i;
+            today_svg = svg_container.cloneNode(true);
+            today = day_container.cloneNode(true);
+            today.appendChild(today_svg);
+            thisBlock.appendChild(today);
+          }
+        }
+
+        // Fill out the blocks (weeks or momths)
+
+        dayStart = firstDay;
+        currentTime = start;
+
+        calLoop: while (currentTime <= end) {
+          // Week: blockSize = 7 . Otherwise...
+          if (layout == "monthside" || layout == "monthtop") {
+            blockSize = getMonthSize(currentTime);
+          }
+
+          for (var i = dayStart; i < blockSize + firstBlockday; i++) {
+            thisBlock.appendChild(one_night(currentTime, dateFormat));
+
+            if (currentTime.valueOf() == end.valueOf()) {
+              // TODO pad week till end
+              calendarDiv.appendChild(thisBlock);
+              break calLoop;
+            }
+
+            currentTime.setDate(currentTime.getDate() + 1);
+          }
+
+          calendarDiv.appendChild(thisBlock);
+
+          thisBlock = block.cloneNode(true);
+          thisBlock.setAttribute("class", layout);
+
+          dayStart = firstBlockday;
+        }
+        wholeCalendarContainer.appendChild(mainDiv);
+
+        wholeCalendarContainer.appendChild(footer);
+
+        return 1;
+      }
+
+      function one_night(currentTime, dateFormat) {
+        tmpt = currentTime / 1000;
+
+        tmpt2 = tmpt + timeCorr;
+
+        days = (tmpt2 - EPOCH_MINUS_1970 * 86400) / 86400.0;
+
+        today = moon_phase(days);
+
+        phase_path = phase_shape(today);
+
+        today_svg = svg_container.cloneNode(true);
+
+        if (phase_path) {
+          phase_path.setAttribute("fill", "white");
+          phase_path.setAttribute("stroke", "white");
+          phase_path.setAttribute("stroke-width", "0");
+          phase_path.setAttribute("transform", transform);
+          today_svg.appendChild(phase_path);
+        }
+        //   phase_path = phase_path + attr_luna + transform + " />";
+
+        var month = currentTime.getMonth() + 1;
+        var day = currentTime.getDate();
+        var year = currentTime.getFullYear();
+        var wkday = currentTime.getDay();
+        var dayText = "";
+
+        today_text_svg = element_text_svg.cloneNode(true);
+
+        if (wkday == 0) {
+          dayText = sundayMarker;
+        }
+
+        if (wkday == 6) {
+          dayText = saturdayMarker;
+        }
+
+        switch (dateFormat) {
+          case "day":
+            dayText += day;
+            break;
+          case "daymonth":
+            dayText += `${day}/${month}`;
+            break;
+          case "monthday":
+            dayText += `${month}/${day}`;
+            break;
+          case "daymonthyear":
+            dayText += `${day}/${month}/${year}`;
+            break;
+          case "monthdayyear":
+            dayText += `${month}/${day}/${year}`;
+            break;
+          default:
+        }
+        todayEclipse = eclipses.find(
+          (eclipse) => eclipse.date.valueOf() == currentTime.valueOf()
+        );
+        if (todayEclipse !== undefined && todayEclipse.type != "penumbral") {
+          eclipse_text_svg = element_text_svg.cloneNode(true);
+          eclipse_text_svg.setAttribute("x", "35");
+          eclipse_text_svg.setAttribute("y", "114");
+          eclipse_text_svg.innerHTML = "&#10686; ";
+          today_svg.appendChild(eclipse_text_svg);
+          shift = todayEclipse.type == "total" ? "15%" : "20%";
+          today_text_svg.setAttribute("dx", shift);
+          dayText = todayEclipse.type;
+        }
+
+        today_text_svg.innerHTML = dayText;
+        today_svg.appendChild(today_text_svg);
+
+        today_svg.setAttribute("x", "0");
+        today_svg.setAttribute("y", "0");
+
+        today_container = day_container.cloneNode(true);
+        today_container.id = `day${year}${month}${day}`;
+        today_container.appendChild(today_svg);
+
+        return today_container;
+      }
+
+      function getMonthSize(date) {
+        return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+      }
+
+      /*
+       * moon_phase --
+       *	return phase of the moon
+       */
+      function moon_phase(days) {
+        var N, Msol, Ec, LambdaSol, l, Mm, Ev, Ac, A3, Mmprime;
+        var A4, lprime, V, ldprime, D, Nm;
+
+        N = (360 * days) / 365.242191; /* sec 46 #3 */
+        N = adj360(N);
+        Msol = N + EPSILONg - RHOg; /* sec 46 #4 */
+        Msol = adj360(Msol);
+        Ec = (360 / PI) * ECCEN * Math.sin(dtor(Msol)); /* sec 46 #5 */
+        LambdaSol = N + Ec + EPSILONg; /* sec 46 #6 */
+        LambdaSol = adj360(LambdaSol);
+        l = 13.1763966 * days + lzero; /* sec 65 #4 */
+        l = adj360(l);
+        Mm = l - 0.1114041 * days - Pzero; /* sec 65 #5 */
+        Mm = adj360(Mm);
+        Nm = Nzero - 0.0529539 * days; /* sec 65 #6 */
+        Nm = adj360(Nm);
+        Ev = 1.2739 * Math.sin(dtor(2 * (l - LambdaSol) - Mm)); /* sec 65 #7 */
+        Ac = 0.1858 * Math.sin(dtor(Msol)); /* sec 65 #8 */
+        A3 = 0.37 * Math.sin(dtor(Msol));
+        Mmprime = Mm + Ev - Ac - A3; /* sec 65 #9 */
+        Ec = 6.2886 * Math.sin(dtor(Mmprime)); /* sec 65 #10 */
+        A4 = 0.214 * Math.sin(dtor(2 * Mmprime)); /* sec 65 #11 */
+        lprime = l + Ev + Ec - Ac + A4; /* sec 65 #12 */
+        V = 0.6583 * Math.sin(dtor(2 * (lprime - LambdaSol))); /* sec 65 #13 */
+        ldprime = lprime + V; /* sec 65 #14 */
+        D = ldprime - LambdaSol; /* sec 67 #2 */
+        //return(50.0 * (1 - Math.cos(dtor(D))));			/* sec 67 #3 */
+        //return((1 - Math.cos(dtor(D)))/2.0);			/* sec 67 #3 */
+        return adj360(D) / 360.0;
+      }
+
+      /*
+       * dtor --
+       *	convert degrees to radians
+       */
+      function dtor(deg) {
+        return (deg * PI) / 180.0;
+      }
+
+      /* The code above does the following: 
+	 
+
+/*
+ * adj360 --
+ *	adjust value so 0 <= deg <= 360
+ */
+
+      function adj360(deg) {
+        //while (deg < 0 || deg > 360)	{
+        for (;;) {
+          if (deg < 0) {
+            deg += 360;
+          } else if (deg > 360) {
+            deg -= 360;
+          } else break;
+        }
+        return deg;
+      }
+
+      // Provides an SVG path to draw the terminator (the moon phase curve) given a phase
+
+      function phase_shape(p) {
+        d = false;
+
+        if (p <= NEW + PRECISION) {
+          return false;
+        }
+        if (p > NEW + PRECISION && p <= FIRST - PRECISION) {
+          d =
+            "M50,100 a" +
+            (50 - p * 200) +
+            ",50 1 0,0 0,-100 a50,50 1 0,1 0,100";
+        }
+        if (p > FIRST - PRECISION && p <= FIRST + PRECISION) {
+          d = "M50,100 L 50,0 a50,50 1 0,1 0,100";
+        }
+        if (p > FIRST + PRECISION && p <= FULL - PRECISION) {
+          d =
+            "M50,100 a" +
+            (p * 200 - 50) +
+            ",50 1 0,1 0,-100 a50,50 1 0,1 0,100";
+        }
+        if (p > FULL - PRECISION && p <= FULL + PRECISION) {
+          cx = cy = r = 50;
+        }
+        if (p > FULL + PRECISION && p <= LAST - PRECISION) {
+          d =
+            "M50,100 a" +
+            (50 - (p - 0.5) * 200) +
+            ",50 1 0,0 0,-100 a50,50 1 0,0 0,100";
+        }
+        if (p > LAST - PRECISION && p <= LAST + PRECISION) {
+          d = "M50,100 L 50,0 a50,50 1 0,0 0,100";
+        }
+        if (p > LAST + PRECISION && p <= NEXTNEW - PRECISION) {
+          d =
+            "M50,100 a" +
+            ((p - 0.5) * 200 - 50) +
+            ",50 1 0,1 0,-100 a50,50 1 0,0 0,100";
+        }
+        if (p > NEXTNEW - PRECISION && p <= NEXTNEW + PRECISION) {
+          return false;
+        }
+
+        if (d) {
+          path = calendarPage.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "path"
+          );
+          path.setAttribute("d", d);
+          return path;
+        } else {
+          circle = calendarPage.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "circle"
+          );
+          circle.setAttribute("cx", cx);
+          circle.setAttribute("cy", cy);
+          circle.setAttribute("r", r);
+          return circle;
+        }
+      }
+
+      // Basic Lunar Eclipse and Phase Calculator (Xavier Jubier: http://xjubier.free.fr/)
+
+      function calcLunarEclipse(EclipseYear, YearPeriod) {
+        var myLunarResults = [];
+
+        var R1 = Math.PI / 180;
+        var U = 0;
+
+        G = 1;
+        var K0 = Math.floor((EclipseYear - 1900) * 12.3685);
+        var T = (EclipseYear - 1899.5) / 100;
+        var T2 = T * T;
+        var T3 = T2 * T;
+        var J0 = 2415020 + 29 * K0;
+        var F0 = 0.0001178 * T2 - 0.000000155 * T3;
+        F0 += 0.75933 + 0.53058868 * K0;
+        F0 -= 0.000837 * T - 0.000335 * T2;
+        J0 += Math.floor(F0);
+        F0 -= Math.floor(F0);
+        var M0 = K0 * 0.08084821133;
+        M0 = 360 * (M0 - Math.floor(M0)) + 359.2242;
+        M0 -= 0.0000333 * T2;
+        M0 -= 0.00000347 * T3;
+        var M1 = K0 * 0.07171366128;
+        M1 = 360 * (M1 - Math.floor(M1)) + 306.0253;
+        M1 += 0.0107306 * T2;
+        M1 += 0.00001236 * T3;
+        var B1 = K0 * 0.08519585128;
+        B1 = 360 * (B1 - Math.floor(B1)) + 21.2964;
+        B1 -= 0.0016528 * T2;
+        B1 -= 0.00000239 * T3;
+
+        for (var K9 = 1; K9 <= 27 * YearPeriod; K9 += 2) {
+          J = J0 + 14 * K9;
+          F = F0 + 0.765294 * K9;
+          var K = K9 / 2;
+          M5 = (M0 + K * 29.10535608) * R1;
+          M6 = (M1 + K * 385.81691806) * R1;
+          B6 = (B1 + K * 390.67050646) * R1;
+          F -= 0.4068 * Math.sin(M6);
+          F += (0.1734 - 0.000393 * T) * Math.sin(M5);
+          F += 0.0161 * Math.sin(2 * M6);
+          F -= 0.0104 * Math.sin(2 * B6);
+          F -= 0.0074 * Math.sin(M5 - M6);
+          F -= 0.0051 * Math.sin(M5 + M6);
+          F += 0.0021 * Math.sin(2 * M5);
+          F += 0.5 / 1440;
+          J += Math.floor(F);
+          F -= Math.floor(F);
+
+          myLEStr = eclipser(EclipseYear);
+
+          if (myLEStr != 0) myLunarResults.push(myLEStr);
+        }
+
+        return myLunarResults;
+      }
+
+      function eclipser(EclipseYear) {
+        myLEStr = "";
+        D7 = 0;
+        if (Math.abs(Math.sin(B6)) > 0.36) return 0;
+        S = 5.19595 - 0.0048 * Math.cos(M5);
+        S += 0.002 * Math.cos(2 * M5);
+        S -= 0.3283 * Math.cos(M6);
+        S -= 0.006 * Math.cos(M5 + M6);
+        S += 0.0041 * Math.cos(M5 - M6);
+        C1 = 0.207 * Math.sin(M5);
+        C1 += 0.0024 * Math.sin(2 * M5);
+        C1 -= 0.039 * Math.sin(M6);
+        C1 += 0.0115 * Math.sin(2 * M6);
+        C1 -= 0.0073 * Math.sin(M5 + M6);
+        C1 -= 0.0067 * Math.sin(M5 - M6);
+        C1 += 0.0117 * Math.sin(2 * B6);
+        D9 = Math.abs(S * Math.sin(B6) + C1 * Math.cos(B6));
+        U = 0.0059 + 0.0046 * Math.cos(M5);
+        U -= 0.0182 * Math.cos(M6);
+        U += 0.0004 * Math.cos(2 * M6);
+        U -= 0.0005 * Math.cos(M5 + M6);
+        RP = 1.2847 + U;
+        RU = 0.7404 - U;
+        MP = (1.5572 + U - D9) / 0.545;
+
+        if (MP < 0) return 0;
+
+        MU = (1.0129 - U - D9) / 0.545;
+        D5 = 1.5572 + U;
+        D6 = 1.0129 - U;
+        D7 = 0.4679 - U;
+        N = (0.5458 + 0.04 * Math.cos(M6)) / 60;
+        D5 = ((D5 * D5 - D9 * D9) * (D5 * D5 - D9 * D9)) / N;
+        if (!(MU <= 0)) D6 = ((D6 * D6 - D9 * D9) * (D6 * D6 - D9 * D9)) / N;
+        if (!(MU <= 1)) D7 = ((D7 * D7 - D9 * D9) * (D7 * D7 - D9 * D9)) / N;
+
+        Jq = J;
+        Fq = F;
+        G = 1;
+
+        if (EclipseYear < 1583) G = 0;
+
+        Fq += 0.5;
+
+        if (!(Fq < 1)) {
+          Fq -= 1;
+          Jq += 1;
+        }
+
+        if (G == 1) {
+          A1 = Math.floor(Jq / 36524.25 - 51.12264);
+          A = Jq + 1 + A1 - Math.floor(A1 / 4);
+        } else A = Jq;
+
+        B = A + 1524;
+        C = Math.floor(B / 365.25 - 0.3343);
+        Dq = Math.floor(365.25 * C);
+        E = Math.floor((B - Dq) / 30.61);
+        Dq = B - Dq - Math.floor(30.61 * E) + Fq; // Dia fraccional
+        Mq = E - 1;
+        Yq = C - 4716;
+        if (E > 13.5) Mq -= 12; // Mes
+        if (Mq < 2.5) Yq += 1; // Año
+        D1 = Math.floor(Dq); // Día
+        H = 24 * (Dq - D1); // Horas fraccionales
+        H1 = Math.floor(H); // Horas
+        M9 = Math.floor(60 * (H - H1)); // Minutos
+        if (M9 < 10) M9 = "0" + M9;
+
+        // D1 = dia
+        // Mq = mes
+        // Yq = año
+
+        eclipseDate = new Date(Date.UTC(Yq, Mq - 1, D1, H1, M9));
+
+        if (MU < 0) {
+          return { date: eclipseDate, type: "penumbral" };
+        } else if (MU >= 1) {
+          return { date: eclipseDate, type: "total" };
+        } else {
+          return { date: eclipseDate, type: "partial" };
+        }
+      }
+
+      function getCalendarSize() {
+        // waitForElm("#mainContainer").then((elm) => {
+
+        calendarWidth =
+          calendarPage.getElementById("mainContainer").offsetWidth / 30.78;
+        calendarHeight =
+          calendarPage.getElementById("mainContainer").offsetHeight / 30.78;
+
+        document
+          .getElementById("calendarSizeDiv")
+          .setAttribute("style", "display:block");
+        calendarDimensions = document.getElementById("calendarDimensions");
+        calendarDimensions.innerHTML =
+          calendarWidth.toFixed(1) +
+          " x " +
+          calendarHeight.toFixed(1) +
+          " cm <br>" +
+          (calendarWidth / 2.54).toFixed(1) +
+          " x " +
+          (calendarHeight / 2.54).toFixed(1) +
+          " in <br>";
+        // calendarDummy = document.getElementById("calendarDummy");
+        // calendarDummy.setAttribute(
+        //   "style",
+        //   "width:" + calendarWidth + "px;height:" + calendarHeight + "px;"
+        // );
+
+        // });
+      }
+
+      function formatDate(date) {
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        return year + "-" + month + "-" + day;
+      }
+
+      function getLocalTime(dateStr) {
+        const localOffset = new Date().getTimezoneOffset() * 60000;
+        return new Date(new Date(dateStr).getTime() + localOffset);
+      }
+
+      function getFractionalYear(date) {
+        startYearMillis = new Date(date.getFullYear(), 0, 1);
+        dateMillis = date.getTime();
+        endYearMillis = new Date(date.getFullYear(), 11, 31);
+
+        return (
+          date.getFullYear() +
+          (dateMillis - startYearMillis) / (endYearMillis - startYearMillis)
+        );
+      }
+    </script>
+  </body>
+</html>
