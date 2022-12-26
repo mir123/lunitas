@@ -20,4 +20,4 @@ Adjust the parameters and print. If you make a weekly calendar you may need to p
 
 This script is based on the BSD Games program pom by Keith E. Brandt. I translated part of pom.c to Javascript and added the SVG output bit.
 
-Eclipses are obtained using code from the[http://xjubier.free.fr/en/site_pages/LunarEclipseCalculator.html](lunar eclipse calculator) by Xavier Jubier.
+Eclipses are obtained using code from the [http://xjubier.free.fr/en/site_pages/LunarEclipseCalculator.html](lunar eclipse calculator) by Xavier Jubier.
