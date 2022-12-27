@@ -1,6 +1,6 @@
 # luna.js
 
-Make a lunar phase calendar with Javascript
+Make a lunar phase calendar with Javascript. See at [https://guineo.org/lunitas/](https://guineo.org/lunitas/).
 
 ## 0.Intro
 
