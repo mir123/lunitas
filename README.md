@@ -1,20 +1,21 @@
-# luna.js
+# Lunitas
 
-Make a lunar phase calendar with Javascript. See at [https://guineo.org/lunitas/](https://guineo.org/lunitas/).
+Make a lunar phase calendar between any dates, using JavaScript and SVG. See at [https://guineo.org/lunitas/](https://guineo.org/lunitas/).
 
 ## 0.Intro
 
-Generate a daily moon phase calendar in your browser using SVG.
+Generate a daily moon phase calendar with lunar eclipses in your browser. 
 
 ## 1. Usage
 
-Download all files and put in folder. Open luna.html in your browser.
+Download all files and put in folder. Open luna_one.html in your browser.
 
 Adjust the parameters and print. If you make a weekly calendar you may need to print on several pages and then tape or glue them together. It is also possible to export to PDF and then open it with a [vector editor](https://inkscape.org/) to adapt the design to your imagination.
 
 ## 2. To do
 
 - Add solar eclipse, red moon and other predictions
+- Draw lunar eclipses
 
 ## 3. Acknowledgements
 
